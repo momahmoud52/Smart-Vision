@@ -1,0 +1,367 @@
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #000;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
+/* ================= Loader ================= */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.loader-content {
+  text-align: center;
+  color: #fff;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.loader-logo {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+  animation: pulse 2s infinite;
+}
+
+.loader-content h2 {
+  color: #D4AF37;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Loader fade-out effect */
+#loader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* ================= Navbar ================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #000;
+  color: #fff;
+  position: relative;
+  z-index: 1000;
+}
+
+/* Logo with image + text */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #D4AF37;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #D4AF37;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* ================= Hero ================= */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+              url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&w=1600&q=80&auto=format&fit=crop")
+              center/cover no-repeat;
+  color: white;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: fadeInUp 1.4s ease forwards;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  max-width: 700px;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1.6s ease forwards;
+}
+
+/* Buttons Animation */
+.btn {
+  background: #D4AF37;
+  color: black;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  background: white;
+  color: #000;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+}
+
+/* Pulse Effect */
+.btn:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.btn:hover:after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* ================= About Page Hero ================= */
+.about-hero {
+  background: linear-gradient(135deg, #000 70%, #D4AF37);
+  color: white;
+  text-align: center;
+  padding: 4rem 1rem;
+  animation: fadeInUp 1.5s ease forwards;
+}
+
+.about-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.about-hero p {
+  font-size: 1.2rem;
+  color: #D4AF37;
+}
+
+/* About Page Content */
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  align-items: center;
+}
+
+.about-text h2 {
+  color: #D4AF37;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  color: #333;
+  animation: fadeInUp 1.4s ease forwards;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  animation: fadeInUp 1.6s ease forwards;
+}
+
+/* Modern About Section */
+.about-modern {
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.about-modern-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.about-modern-text h2 {
+  color: #D4AF37;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.about-modern-text p {
+  margin-bottom: 1.2rem;
+  color: #444;
+}
+
+.about-modern-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Values / Features */
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem auto;
+  max-width: 1100px;
+  padding: 0 1rem;
+}
+
+.value-card {
+  background: #000;
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.value-card h3 {
+  color: #D4AF37;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+}
+
+/* Footer */
+.footer {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  animation: fadeInUp 1.8s ease forwards;
+}
+
+.footer p {
+  color: #D4AF37;
+}
+
+/* Fade-In Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #000;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-text h2 {
+    margin-top: 1rem;
+  }
+
+  .about-modern-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-modern-image {
+    order: -1;
+  }
+}
