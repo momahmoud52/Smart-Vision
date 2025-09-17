@@ -10,8 +10,8 @@ hamburger.addEventListener("click", () => {
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
 
-  // إخفاء اللودر بعد 6 ثواني
+  // إخفاء اللودر بعد 2 ثواني
   setTimeout(() => {
     loader.classList.add("fade-out");
-  }, 6000); // 6000 = 6 ثواني
+  }, 2000); // 2000 = 2 ثواني
 });
