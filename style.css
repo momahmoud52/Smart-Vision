@@ -223,6 +223,8 @@ body {
   margin-bottom: 1.5rem;
   color: #333;
   animation: fadeInUp 1.4s ease forwards;
+  text-align: justify;
+  line-height: 1.8;
 }
 
 .about-image img {
@@ -255,6 +257,8 @@ body {
 .about-modern-text p {
   margin-bottom: 1.2rem;
   color: #444;
+  text-align: justify;
+  line-height: 1.8;
 }
 
 .about-modern-image img {
@@ -363,5 +367,11 @@ body {
 
   .about-modern-image {
     order: -1;
+  }
+
+  /* Align texts to center on mobile */
+  .about-text p,
+  .about-modern-text p {
+    text-align: center;
   }
 }
