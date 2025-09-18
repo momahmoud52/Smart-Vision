@@ -391,7 +391,7 @@ body {
     text-decoration: underline;
   }
   
-  /* Map Box */
+  /* Map Box (داخل الكونتينر بجانب البيانات) */
   .map-section iframe {
     width: 100%;
     height: 100%;
@@ -404,49 +404,19 @@ body {
   /* ================= Responsive for Mobile ================= */
   @media (max-width: 768px) {
     .contact-container {
-      display: flex;
-      flex-direction: row;   /* بيانات بجانب الخريطة */
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
+      grid-template-columns: 1fr;
+      text-align: center;
     }
   
     .contact-info {
-      flex: 1; /* تاخذ عرض أكبر */
-      text-align: left;
-    }
-  
-    .map-section {
-      flex: 0 0 40%; /* الخريطة 40% */
+      margin-bottom: 2rem;
     }
   
     .map-section iframe {
-      min-height: 200px;
+      min-height: 300px;
     }
   }
-  
-  /* WhatsApp Floating Button (يطفو طبيعي) */
-  .whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25D366;
-    border-radius: 50%;
-    padding: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    z-index: 1500;
-    transition: transform 0.3s ease;
-  }
-  
-  .whatsapp-float:hover {
-    transform: scale(1.1);
-  }
-  
-  .whatsapp-float img {
-    width: 40px;
-    height: 40px;
-  }
-    
+   
 
 /* Footer */
 .footer {
