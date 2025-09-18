@@ -325,10 +325,29 @@ body {
     outline: none;
     cursor: pointer;
     transition: background 0.3s ease;
+    position: relative; /* لإضافة السهم */
+    padding-right: 2rem; /* مساحة للسهم */
   }
   
   .accordion-header:hover {
     background: #222;
+  }
+  
+  /* السهم */
+  .accordion-header::after {
+    content: "▼";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform 0.3s ease;
+    font-size: 1rem;
+    color: #D4AF37;
+  }
+  
+  /* لما يكون الـ accordion مفتوح */
+  .accordion-item.active .accordion-header::after {
+    transform: translateY(-50%) rotate(180deg);
   }
   
   .accordion-content {
@@ -354,6 +373,7 @@ body {
     max-height: 300px;
     padding: 1rem;
   }
+  
   
 
 
@@ -417,7 +437,7 @@ body {
   }
 
   .map-section {
-    flex: 0 0 40%; /* الخريطة 40% */
+    flex: 0 0 52%; /* الخريطة 40% */
   }
 
   .map-section iframe {
