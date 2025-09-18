@@ -379,103 +379,94 @@ body {
 
 /* ================= Contact Section ================= */
 .contact-section {
-    padding: 4rem 1rem;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+/* Contact Info */
+.contact-info h2 {
+  color: #D4AF37;
+  margin-bottom: 1rem;
+}
+
+.contact-info p {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.contact-info a {
+  color: #D4AF37;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Map Box */
+.map-section iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ================= Responsive for Mobile ================= */
+@media (max-width: 768px) {
   .contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-    align-items: stretch;
+    display: flex;
+    flex-direction: row;   /* بيانات بجانب الخريطة */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
   }
-  
-  /* Contact Info */
-  .contact-info h2 {
-    color: #D4AF37;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+
+  .contact-info {
+    flex: 1; /* تاخذ عرض أكبر */
+    text-align: left;
   }
-  
-  .contact-info p {
-    margin-bottom: 1rem;
-    color: #444;
-    font-size: 1rem;
-    line-height: 1.6;
+
+  .map-section {
+    flex: 0 0 40%; /* الخريطة 40% */
   }
-  
-  .contact-info a {
-    color: #D4AF37;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  
-  .contact-info a:hover {
-    text-decoration: underline;
-    color: #b89028;
-  }
-  
-  /* Map Box */
+
   .map-section iframe {
-    width: 100%;
-    height: 100%;
-    min-height: 350px;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-    transition: transform 0.3s ease;
+    min-height: 200px;
   }
-  
-  .map-section iframe:hover {
-    transform: scale(1.02);
-  }
-  
-  /* ================= Responsive for Mobile ================= */
-  @media (max-width: 768px) {
-    .contact-container {
-      display: flex;
-      flex-direction: column;   /* على الموبايل: بيانات فوق والخريطة تحت */
-      gap: 2rem;
-    }
-  
-    .contact-info {
-      text-align: center;
-    }
-  
-    .contact-info h2 {
-      font-size: 1.3rem;
-    }
-  
-    .map-section iframe {
-      min-height: 250px;
-    }
-  }
-  
-  /* WhatsApp Floating Button */
-  .whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25D366;
-    border-radius: 50%;
-    padding: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    z-index: 1500;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
-  }
-  
-  .whatsapp-float img {
-    width: 40px;
-    height: 40px;
-  }
-  
+}
+
+/* WhatsApp Floating Button (يطفو طبيعي) */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1500;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float img {
+  width: 40px;
+  height: 40px;
+}
+
 
 /* Footer */
 .footer {
