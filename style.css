@@ -437,7 +437,7 @@ body {
   }
 
   .map-section {
-    flex: 0 0 52%; /* الخريطة 40% */
+    flex: 0 0 40%; /* الخريطة 40% */
   }
 
   .map-section iframe {
