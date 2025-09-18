@@ -230,7 +230,7 @@ body {
 .about-image img {
   width: 100%;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.197);
   animation: fadeInUp 1.6s ease forwards;
 }
 
@@ -242,10 +242,16 @@ body {
 }
 
 .about-modern-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
   align-items: center;
+  justify-content: center;
+}
+
+.about-modern-text, 
+.about-modern-image {
+  flex: 1;
 }
 
 .about-modern-text h2 {
@@ -257,7 +263,7 @@ body {
 .about-modern-text p {
   margin-bottom: 1.2rem;
   color: #444;
-  text-align: justify;
+  text-align: justify; /* النص مضبوط */
   line-height: 1.8;
 }
 
@@ -265,6 +271,20 @@ body {
   width: 100%;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Slide In Animation */
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slideInRight 1.5s ease forwards;
+}
+
+@keyframes slideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Values / Features */
@@ -295,6 +315,70 @@ body {
 .value-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+}
+
+/* ================= Contact Section ================= */
+.contact-section {
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.contact-info h2,
+.contact-form h2 {
+  color: #D4AF37;
+  margin-bottom: 1rem;
+}
+
+.contact-info p {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.contact-info a {
+  color: #D4AF37;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* Map */
+.map-section {
+  margin: 3rem 0;
+  border: 3px solid #000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1500;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float img {
+  width: 40px;
+  height: 40px;
 }
 
 /* Footer */
@@ -361,17 +445,27 @@ body {
   }
 
   .about-modern-container {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     text-align: center;
   }
 
   .about-modern-image {
     order: -1;
+    animation: fadeInUp 1.5s ease forwards; /* من أسفل */
   }
 
   /* Align texts to center on mobile */
   .about-text p,
   .about-modern-text p {
+    text-align: justify; /* النص مضبوط */
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
     text-align: center;
+  }
+
+  .contact-form button {
+    align-self: center;
   }
 }
