@@ -636,8 +636,8 @@ body {
     }
   
     .map-section iframe {
-      width: 250px;   /* مربع متوسط */
-      height: 250px;
+      width: 200px;   /* مربع متوسط */
+      height: 200px;
       min-height: unset;
       border-radius: 10px;
     }
