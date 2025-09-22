@@ -221,7 +221,7 @@ body {
 
 .about-text p {
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #333333;
   animation: fadeInUp 1.4s ease forwards;
   text-align: justify;
   line-height: 1.8;
@@ -256,7 +256,7 @@ body {
 
 .about-modern-text p {
   margin-bottom: 1.2rem;
-  color: #444;
+  color: #ffe9bc;
   text-align: justify;
   line-height: 1.8;
 }
