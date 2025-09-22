@@ -562,6 +562,7 @@ body {
     padding: 4rem 1rem;
     max-width: 1200px;
     margin: auto;
+    overflow-x: hidden; /* منع الحركة يمين ويسار */
   }
   
   .contact-container {
@@ -616,10 +617,8 @@ body {
   @media (max-width: 768px) {
     .contact-container {
       display: flex;
-      flex-direction: row;   /* بيانات + خريطة جنب بعض */
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
+      flex-direction: column; /* خليهم فوق بعض */
+      gap: 1.5rem;
     }
   
     .contact-info {
@@ -636,9 +635,9 @@ body {
     }
   
     .map-section iframe {
-      width: 200px;   /* مربع متوسط */
-      height: 200px;
-      min-height: unset;
+      width: 90%;   /* ما يطلعش بره الشاشة */
+      max-width: 280px; /* مناسب للموبايل */
+      height: 280px;    /* مربع واضح */
       border-radius: 10px;
     }
   }
@@ -699,7 +698,7 @@ body {
     }
   }
   
-  /* Responsive */
+  /* Responsive Navbar */
   @media (max-width: 768px) {
     .nav-links {
       display: none;
@@ -743,16 +742,6 @@ body {
     .about-modern-text p {
       text-align: center;
     }
-  
-    .contact-container {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-      text-align: left;
-    }
-  
-    .contact-form button {
-      align-self: center;
-    }
   }
+  
   
