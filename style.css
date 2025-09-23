@@ -543,16 +543,36 @@ body {
     transform: scale(1.1);
   }
   
-  /* Responsive */
-  @media (max-width: 768px) {
+/* Responsive */
+@media (max-width: 768px) {
     .team-top,
     .team-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   
+    /* تقليل ارتفاع الكارت */
+    .team-inner {
+      height: 240px; /* بدل 320px */
+    }
+  
+    /* تصغير الصورة */
     .team-front img {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
+    }
+  
+    /* تصغير النصوص */
+    .team-front h3 {
+      font-size: 1rem;
+    }
+  
+    .team-front p,
+    .team-back p {
+      font-size: 0.8rem;
+    }
+  
+    .team-back h3 {
+      font-size: 1rem;
     }
   }
   
