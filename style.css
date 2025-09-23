@@ -377,6 +377,149 @@ body {
   
 
 
+/* ===== Partnership Hero ===== */
+.partnership-hero {
+    text-align: center;
+    padding: 5rem 1rem;
+    background: linear-gradient(135deg, #111, #1a1a1a);
+    color: #fff;
+  }
+  
+  .partnership-hero h1 {
+    font-size: 2.5rem;
+    color: #D4AF37;
+    margin-bottom: 1rem;
+  }
+  
+  .partnership-hero p {
+    color: #eee;
+    font-size: 1.1rem;
+  }
+  
+  /* ===== Moving Strips ===== */
+  .partners-strip {
+    overflow: hidden;
+    background: #0d0d0d;
+    padding: 1.5rem 0;
+    transform: skewY(-3deg);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .marquee {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .marquee-inner {
+    display: flex;
+    gap: 3rem;
+    width: max-content;
+  }
+  
+  .marquee-inner img {
+    height: 80px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+  
+  .marquee-inner img:hover {
+    filter: grayscale(0%);
+  }
+  
+  /* اتجاهين مختلفين */
+  .marquee-left .marquee-inner {
+    animation: marquee-left 20s linear infinite;
+  }
+  
+  .marquee-right .marquee-inner {
+    animation: marquee-right 20s linear infinite;
+  }
+  
+  @keyframes marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  @keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  
+/* ===== Partners Grid ===== */
+.partners-grid {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: #111;
+  }
+  
+  .partners-grid h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #D4AF37;
+  }
+  
+  .logos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  /* كل عنصر دائري */
+  .logos-grid .logo-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #D4AF37;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #222;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s forwards;
+  }
+  
+  .logos-grid .logo-circle img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #fff;
+    padding: 8px;
+  }
+  
+  /* Animations delay */
+  .logos-grid .logo-circle:nth-child(1) { animation-delay: 0.2s; }
+  .logos-grid .logo-circle:nth-child(2) { animation-delay: 0.4s; }
+  .logos-grid .logo-circle:nth-child(3) { animation-delay: 0.6s; }
+  .logos-grid .logo-circle:nth-child(4) { animation-delay: 0.8s; }
+  .logos-grid .logo-circle:nth-child(5) { animation-delay: 1s; }
+  .logos-grid .logo-circle:nth-child(6) { animation-delay: 1.2s; }
+  
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .logos-grid {
+      gap: 1.2rem;
+    }
+  
+    .logos-grid .logo-circle {
+      width: 90px;
+      height: 90px;
+    }
+  }
+  
 /* ================= خلفية عامة للصفحة ================= */
 body {
     background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
