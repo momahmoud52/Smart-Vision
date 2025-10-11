@@ -722,184 +722,148 @@ body {
     z-index: -1;
   }
   
-  /* ================= Team Section ================= */
-  .team-section {
-    padding: 5rem 1rem;
-    max-width: 1200px;
-    margin: auto;
-    text-align: center;
-    position: relative;
-    z-index: 1; /* عشان يبين فوق الخلفية */
-  }
-  
-  /* العنوان */
-  .team-section h2 {
-    font-size: 2.4rem;
-    margin-bottom: 2rem;
-    background: linear-gradient(90deg, #D4AF37, #fff, #D4AF37);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: shine 3s infinite linear;
-  }
-  
-  @keyframes shine {
-    0% { background-position: -200px 0; }
-    100% { background-position: 200px 0; }
-  }
-  
-  /* الشبكة */
-  .team-top {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    justify-content: center;
-    margin-bottom: 3rem;
-  }
-  
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 2rem;
-  }
-  
-  /* Flip Card */
-  .team-card {
-    perspective: 1000px;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s ease forwards;
-  }
-  
-  .team-card:nth-child(1) { animation-delay: 0.2s; }
-  .team-card:nth-child(2) { animation-delay: 0.4s; }
-  .team-card:nth-child(3) { animation-delay: 0.6s; }
-  .team-card:nth-child(4) { animation-delay: 0.8s; }
-  .team-card:nth-child(5) { animation-delay: 1s; }
-  .team-card:nth-child(6) { animation-delay: 1.2s; }
-  .team-card:nth-child(7) { animation-delay: 1.4s; }
-  
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .team-inner {
-    position: relative;
-    width: 100%;
-    height: 320px;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-  }
-  
-  .team-card:hover .team-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .team-front,
-  .team-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    backface-visibility: hidden;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-  }
-  
-  /* Front */
-  .team-front {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(212,175,55,0.3);
-    backdrop-filter: blur(8px);
-  }
-  
-  .team-front img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid #D4AF37;
-    margin-bottom: 1rem;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  .team-front h3 {
-    margin: 0.5rem 0;
-    font-size: 1.2rem;
-    color: #fff;
-  }
-  
-  .team-front p {
-    color: #ddd;
-    font-size: 0.95rem;
-  }
-  
-  /* Back */
-  .team-back {
-    background: #000;
-    color: #fff;
-    transform: rotateY(180deg);
-    text-align: center;
-    border: 1px solid #D4AF37;
-  }
-  
-  .team-back h3 {
-    color: #D4AF37;
-    margin-bottom: 1rem;
-  }
-  
-  .team-back p {
-    font-size: 0.95rem;
-    color: #eee;
-  }
-  
-  /* Hover effects */
-  .team-card:hover .team-front img {
-    transform: scale(1.1);
-  }
-  
+ /* ====== Team Cards ====== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
+
+.team-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 15px;
+  text-align: center;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(212,175,55,0.4);
+}
+
+.team-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #D4AF37;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover img {
+  transform: scale(1.1);
+}
+
+.team-card h3 {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.team-card p {
+  color: #ddd;
+  font-size: 0.9rem;
+}
+
+/* ====== Modal (Popup) ====== */
+.team-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.team-modal-content {
+  background: linear-gradient(145deg, #111, #1c1c1c);
+  border: 1px solid #D4AF37;
+  border-radius: 20px;
+  text-align: center;
+  padding: 2rem;
+  color: #fff;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 25px rgba(212,175,55,0.5);
+  transform: scale(0.7);
+  animation: zoomIn 0.4s ease forwards;
+  position: relative;
+}
+
+.team-modal-content img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 4px solid #D4AF37;
+  margin-bottom: 1rem;
+}
+
+.team-modal-content h3 {
+  color: #D4AF37;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal-role {
+  font-size: 1rem;
+  color: #fff3cf;
+  margin-bottom: 1rem;
+}
+
+.modal-info {
+  font-size: 0.95rem;
+  color: #eee;
+  line-height: 1.5;
+}
+
+/* زر الإغلاق */
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.8rem;
+  color: #D4AF37;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+  color: #fff;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  to { transform: scale(1); }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-    .team-top,
-    .team-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
-    /* تقليل ارتفاع الكارت */
-    .team-inner {
-      height: 240px; /* بدل 320px */
-    }
-  
-    /* تصغير الصورة */
-    .team-front img {
-      width: 80px;
-      height: 80px;
-    }
-  
-    /* تصغير النصوص */
-    .team-front h3 {
-      font-size: 1rem;
-    }
-  
-    .team-front p,
-    .team-back p {
-      font-size: 0.8rem;
-    }
-  
-    .team-back h3 {
-      font-size: 1rem;
-    }
+  .team-card img {
+    width: 90px;
+    height: 90px;
   }
-  
+
+  .team-modal-content {
+    padding: 1.5rem;
+  }
+
+  .team-modal-content img {
+    width: 110px;
+    height: 110px;
+  }
+}
 
 /* ================= Contact Section ================= */
 .contact-section {
