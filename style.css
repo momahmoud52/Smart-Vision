@@ -770,124 +770,129 @@ body {
   font-size: 0.9rem;
 }
 
-/* ==== Team Modal (Popup) ==== */
+/* ===== Team Modal (Popup) ===== */
 .team-modal {
+  display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
-  display: none;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
   justify-content: center;
   align-items: center;
-  z-index: 1200;
-  animation: fadeIn 0.5s ease forwards;
-  backdrop-filter: blur(6px);
+  z-index: 9999;
+  padding: 1rem;
 }
 
 .team-modal.active {
   display: flex;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .team-modal-content {
-  background: linear-gradient(135deg, #111, #1a1a1a);
+  background: #111;
   border: 2px solid transparent;
   border-image: linear-gradient(90deg, #D4AF37, #fff, #D4AF37) 1;
   border-radius: 20px;
   max-width: 900px;
   width: 90%;
-  padding: 2rem;
-  display: flex;
-  gap: 2rem;
-  align-items: center;
   color: #fff;
-  box-shadow: 0 0 25px rgba(212,175,55,0.3);
-  animation: slideUp 0.6s ease forwards;
-  transform: translateY(30px);
-  opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
   position: relative;
+  overflow: hidden;
 }
 
-.team-modal.active .team-modal-content {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.team-modal img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
+.team-modal-content img {
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
-  border: 4px solid #D4AF37;
+  object-fit: cover;
+  border: 3px solid #D4AF37;
   flex-shrink: 0;
-  box-shadow: 0 0 25px rgba(212,175,55,0.5);
 }
 
-.team-modal-text {
+.modal-text {
   flex: 1;
+  overflow-y: auto;
+  max-height: 300px;
+  padding-right: 0.5rem;
 }
 
-.team-modal-text h3 {
-  font-size: 1.8rem;
+.modal-text h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
   background: linear-gradient(90deg, #D4AF37, #fff, #D4AF37);
   -webkit-background-clip: text;
   color: transparent;
-  margin-bottom: 0.5rem;
 }
 
-.team-modal-text .modal-role {
-  font-size: 1rem;
+.modal-text .modal-role {
   color: #D4AF37;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
-.team-modal-text .modal-info {
-  font-size: 1rem;
-  color: #ccc;
-  line-height: 1.8;
+.modal-text .modal-info {
+  line-height: 1.6;
+  color: #ddd;
+  font-size: 0.95rem;
   text-align: justify;
 }
 
-/* Close Button */
+/* Close button */
 .close-modal {
   position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 2rem;
+  top: 12px;
+  right: 16px;
+  font-size: 1.8rem;
   color: #D4AF37;
-  background: none;
-  border: none;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: 0.3s;
 }
 
 .close-modal:hover {
-  transform: rotate(90deg) scale(1.2);
+  transform: scale(1.2);
+  color: #fff;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; } to { opacity: 1; }
-}
-@keyframes slideUp {
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* ==== Responsive ==== */
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
   .team-modal-content {
     flex-direction: column;
     text-align: center;
-    padding: 1.5rem;
+    gap: 1rem;
+    width: 95%;
+    padding: 1.2rem;
+    max-height: 90vh; /* يمنع الخروج من الشاشة */
+    overflow-y: auto;
   }
-  .team-modal img {
+
+  .team-modal-content img {
     width: 150px;
     height: 150px;
   }
-  .team-modal-text h3 {
-    font-size: 1.4rem;
+
+  .modal-text {
+    max-height: unset;
+    overflow-y: visible;
+    padding: 0 0.5rem;
   }
-  .team-modal-text .modal-info {
+
+  .modal-text .modal-info {
     font-size: 0.9rem;
-    line-height: 1.6;
+    text-align: center;
+  }
+
+  .close-modal {
+    top: 10px;
+    right: 12px;
   }
 }
 
