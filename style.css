@@ -770,98 +770,124 @@ body {
   font-size: 0.9rem;
 }
 
-/* ====== Modal (Popup) ====== */
+/* ==== Team Modal (Popup) ==== */
 .team-modal {
-  display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.85);
+  display: none;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.4s ease forwards;
+  z-index: 1200;
+  animation: fadeIn 0.5s ease forwards;
+  backdrop-filter: blur(6px);
+}
+
+.team-modal.active {
+  display: flex;
 }
 
 .team-modal-content {
-  background: linear-gradient(145deg, #111, #1c1c1c);
-  border: 1px solid #D4AF37;
+  background: linear-gradient(135deg, #111, #1a1a1a);
+  border: 2px solid transparent;
+  border-image: linear-gradient(90deg, #D4AF37, #fff, #D4AF37) 1;
   border-radius: 20px;
-  text-align: center;
-  padding: 2rem;
-  color: #fff;
-  max-width: 400px;
+  max-width: 900px;
   width: 90%;
-  box-shadow: 0 0 25px rgba(212,175,55,0.5);
-  transform: scale(0.7);
-  animation: zoomIn 0.4s ease forwards;
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(212,175,55,0.3);
+  animation: slideUp 0.6s ease forwards;
+  transform: translateY(30px);
+  opacity: 0;
   position: relative;
 }
 
-.team-modal-content img {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 4px solid #D4AF37;
-  margin-bottom: 1rem;
+.team-modal.active .team-modal-content {
+  transform: translateY(0);
+  opacity: 1;
 }
 
-.team-modal-content h3 {
-  color: #D4AF37;
-  font-size: 1.4rem;
+.team-modal img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #D4AF37;
+  flex-shrink: 0;
+  box-shadow: 0 0 25px rgba(212,175,55,0.5);
+}
+
+.team-modal-text {
+  flex: 1;
+}
+
+.team-modal-text h3 {
+  font-size: 1.8rem;
+  background: linear-gradient(90deg, #D4AF37, #fff, #D4AF37);
+  -webkit-background-clip: text;
+  color: transparent;
   margin-bottom: 0.5rem;
 }
 
-.modal-role {
+.team-modal-text .modal-role {
   font-size: 1rem;
-  color: #fff3cf;
+  color: #D4AF37;
   margin-bottom: 1rem;
 }
 
-.modal-info {
-  font-size: 0.95rem;
-  color: #eee;
-  line-height: 1.5;
+.team-modal-text .modal-info {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.8;
+  text-align: justify;
 }
 
-/* زر الإغلاق */
+/* Close Button */
 .close-modal {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.8rem;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
   color: #D4AF37;
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .close-modal:hover {
-  color: #fff;
+  transform: rotate(90deg) scale(1.2);
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes slideUp {
+  to { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes zoomIn {
-  to { transform: scale(1); }
-}
-
-/* Responsive */
+/* ==== Responsive ==== */
 @media (max-width: 768px) {
-  .team-card img {
-    width: 90px;
-    height: 90px;
-  }
-
   .team-modal-content {
+    flex-direction: column;
+    text-align: center;
     padding: 1.5rem;
   }
-
-  .team-modal-content img {
-    width: 110px;
-    height: 110px;
+  .team-modal img {
+    width: 150px;
+    height: 150px;
+  }
+  .team-modal-text h3 {
+    font-size: 1.4rem;
+  }
+  .team-modal-text .modal-info {
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 }
 

@@ -147,3 +147,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   console.log('Team modal initialized for', teamCards.length, 'cards.');
 });
+// تحديث المودال لتنسيق الفقرة الطويلة بشكل جميل
+teamCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const name = card.dataset.name || card.querySelector('h3')?.textContent || '';
+    const role = card.dataset.role || card.querySelector('p')?.textContent || '';
+    const info = card.dataset.info || '';
+    const img = card.dataset.img || card.querySelector('img')?.src || '';
+
+    modalImg.src = img;
+    modalName.textContent = name;
+    modalRole.textContent = role;
+    modalInfo.innerHTML = `<div class="team-modal-text">
+        <h3>${name}</h3>
+        <p class="modal-role">${role}</p>
+        <p class="modal-info">${info}</p>
+    </div>`;
+    showModal();
+  });
+});
