@@ -1150,3 +1150,35 @@ body {
     font-size: 0.9rem;
   }
 }
+
+
+
+/* ===== Dropdown Style for Position ===== */
+#position {
+  background: linear-gradient(90deg, rgba(212,175,55,0.2), rgba(255,255,255,0.1));
+  border: 1px solid rgba(212,175,55,0.6);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: linear-gradient(90deg, #D4AF37, #fff, #D4AF37);
+  background-size: 300%;
+  background-clip: padding-box;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+#position option {
+  background: #000; /* لون خلفية القائمة عند الفتح */
+  color: #fff; /* لون النص داخل الخيارات */
+  padding: 10px;
+}
+
+#position:hover,
+#position:focus {
+  border-color: #D4AF37;
+  box-shadow: 0 0 10px rgba(212,175,55,0.4);
+  background-position: right center;
+  color: #D4AF37;
+}
