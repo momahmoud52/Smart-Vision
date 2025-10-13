@@ -3,303 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Career | Smart Vision</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-
+  <title>Apply Now - Smart Vision</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    * {
+      box-sizing: border-box;
+    }
     body {
-      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top, #111, #000);
       color: #fff;
-      min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       padding: 2rem;
     }
-
-    .career-container {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      background: rgba(255, 255, 255, 0.05);
+    .container {
+      background: rgba(255,255,255,0.06);
       border: 1px solid rgba(212,175,55,0.4);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-      max-width: 1000px;
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 700px;
       width: 100%;
-      animation: fadeIn 1s ease forwards;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(212,175,55,0.15);
+      animation: fadeIn 0.8s ease;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .career-left {
-      background: url('career-bg.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 3rem;
+    h1 {
       text-align: center;
-    }
-
-    .career-left h2 {
-      font-size: 2.2rem;
       color: #D4AF37;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      letter-spacing: 1px;
     }
-
-    .career-left p {
-      color: #eee;
-      font-size: 1rem;
-      max-width: 300px;
-    }
-
-    .career-right {
-      background: rgba(0,0,0,0.6);
-      padding: 3rem;
-    }
-
     form {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1rem;
     }
-
-    label {
-      font-weight: 500;
-      color: #D4AF37;
-    }
-
     input, select, textarea {
-      padding: 0.9rem 1rem;
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(212,175,55,0.3);
       border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.08);
       color: #fff;
       font-size: 1rem;
       transition: 0.3s;
     }
-
     input:focus, select:focus, textarea:focus {
       border-color: #D4AF37;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.15);
       outline: none;
     }
-
-    textarea { resize: none; height: 100px; }
-
-    .phone-row {
+    .row {
       display: flex;
-      gap: 0.8rem;
-      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
-
-    .country-select-container {
-      position: relative;
-      width: 40%;
+    .row > div {
+      flex: 1;
+      min-width: 45%;
     }
-
-    .country-search {
-      width: 100%;
-      padding: 0.8rem;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.1);
-      color: #fff;
+    textarea {
+      resize: none;
+      height: 120px;
     }
-
-    .country-dropdown {
-      position: absolute;
-      top: 110%;
-      left: 0;
-      right: 0;
-      background: #111;
-      border: 1px solid rgba(212,175,55,0.4);
-      border-radius: 10px;
-      display: none;
-      max-height: 180px;
-      overflow-y: auto;
-      z-index: 10;
-    }
-
-    .country-option {
-      padding: 0.7rem;
+    input[type="file"] {
+      color: #ccc;
       cursor: pointer;
-      transition: 0.2s;
     }
-
-    .country-option:hover {
-      background: rgba(212,175,55,0.2);
+    input[type="file"]::-webkit-file-upload-button {
+      background: linear-gradient(90deg, #D4AF37, #fff, #D4AF37);
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
     }
-
+    input[type="file"]::-webkit-file-upload-button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #fff, #D4AF37, #fff);
+    }
     button {
       background: linear-gradient(90deg, #D4AF37, #fff, #D4AF37);
       color: #000;
+      font-weight: 700;
       border: none;
       padding: 0.9rem;
       border-radius: 10px;
       cursor: pointer;
-      font-weight: 700;
-      transition: 0.3s;
       font-size: 1rem;
+      transition: 0.3s;
     }
-
     button:hover {
-      background: linear-gradient(90deg, #fff, #D4AF37, #fff);
       transform: scale(1.05);
+      background: linear-gradient(90deg, #fff, #D4AF37, #fff);
     }
-
-    .alert {
-      text-align: center;
-      font-weight: 600;
-      padding: 0.8rem;
-      border-radius: 10px;
-      display: none;
-    }
-
-    .alert.success {
-      display: block;
-      background: rgba(0,255,100,0.1);
-      border: 1px solid #00ff88;
-      color: #00ff88;
-    }
-
-    .alert.error {
-      display: block;
-      background: rgba(255,0,0,0.1);
-      border: 1px solid #ff6666;
-      color: #ff6666;
-    }
-
-    @media (max-width: 850px) {
-      .career-container {
-        grid-template-columns: 1fr;
-      }
-      .career-left {
-        display: none;
-      }
-      .career-right {
-        padding: 2rem;
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Join Our Team</h1>
 
-  <div class="career-container">
-    <div class="career-left">
-      <h2>Join Smart Vision</h2>
-      <p>We believe in talent, innovation, and teamwork. Join us to shape the future with Smart Vision.</p>
-    </div>
+    <form action="https://formsubmit.co/lucifer.morning2020909@gmail.com" method="POST" enctype="multipart/form-data">
+      <!-- إعدادات فورمSubmit -->
+      <input type="hidden" name="_subject" value="New Career Application - Smart Vision">
+      <input type="hidden" name="_template" value="box">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://momahmoud52.github.io/Smart-Vision//thank-you.html">
 
-    <div class="career-right">
-      <form id="careerForm" action="https://formspree.io/f/mblzpopy" method="POST">
-        <label>Full Name</label>
-        <input type="text" name="Full Name" placeholder="Enter your full name" required>
-
-        <label>Email Address</label>
-        <input type="email" name="Email" placeholder="Enter your email" required>
-
-        <label>Phone Number</label>
-        <div class="phone-row">
-          <div class="country-select-container">
-            <input type="text" class="country-search" placeholder="Search country..." id="countrySearch">
-            <div class="country-dropdown" id="countryDropdown"></div>
-          </div>
-          <input type="tel" name="Phone" id="phone" placeholder="Enter your phone number" required>
+      <div class="row">
+        <div>
+          <input type="text" name="Full Name" placeholder="Full Name" required>
         </div>
+        <div>
+          <input type="email" name="Email" placeholder="Email Address" required>
+        </div>
+      </div>
 
-        <label>Position Applied For</label>
-        <select name="Position" required>
-          <option value="">Select Position</option>
-          <option value="Architect">Architect</option>
-          <option value="Civil Engineer">Civil Engineer</option>
-          <option value="Mechanical Engineer">Mechanical Engineer</option>
-          <option value="Electrical Engineer">Electrical Engineer</option>
-          <option value="Project Manager">Project Manager</option>
-          <option value="Interior Designer">Interior Designer</option>
-        </select>
+      <div class="row">
+        <div>
+          <select name="Country Code" required>
+            <option value="">Country Code</option>
+            <option value="+20">🇪🇬 +20 Egypt</option>
+            <option value="+966">🇸🇦 +966 Saudi Arabia</option>
+            <option value="+971">🇦🇪 +971 UAE</option>
+            <option value="+974">🇶🇦 +974 Qatar</option>
+            <option value="+965">🇰🇼 +965 Kuwait</option>
+            <option value="+973">🇧🇭 +973 Bahrain</option>
+            <option value="+968">🇴🇲 +968 Oman</option>
+          </select>
+        </div>
+        <div>
+          <input type="tel" name="Phone Number" placeholder="Phone Number" required>
+        </div>
+      </div>
 
-        <label>Why would you like to join us?</label>
-        <textarea name="Message" placeholder="Write a short paragraph about yourself..." required></textarea>
+      <textarea name="Message" placeholder="Your Message..." required></textarea>
 
-        <button type="submit">Submit Application</button>
-        <div id="formAlert" class="alert"></div>
-      </form>
-    </div>
+      <label>Upload CV (PDF only)</label>
+      <input type="file" name="CV" accept=".pdf" required>
+
+      <button type="submit">Submit Application</button>
+    </form>
   </div>
-
-  <script>
-    // === دول ===
-    const countries = [
-      { name: "Egypt", code: "+20" },
-      { name: "Saudi Arabia", code: "+966" },
-      { name: "United Arab Emirates", code: "+971" },
-      { name: "Qatar", code: "+974" },
-      { name: "Kuwait", code: "+965" },
-      { name: "Bahrain", code: "+973" },
-      { name: "Oman", code: "+968" },
-      { name: "Jordan", code: "+962" },
-      { name: "Lebanon", code: "+961" },
-      { name: "USA", code: "+1" },
-      { name: "UK", code: "+44" },
-      { name: "Germany", code: "+49" },
-      { name: "France", code: "+33" },
-      { name: "India", code: "+91" },
-      { name: "Turkey", code: "+90" },
-    ];
-
-    const searchInput = document.getElementById("countrySearch");
-    const dropdown = document.getElementById("countryDropdown");
-    const phoneInput = document.getElementById("phone");
-
-    function renderCountries(list) {
-      dropdown.innerHTML = list.map(c => `<div class='country-option'>${c.name} (${c.code})</div>`).join("");
-      dropdown.style.display = "block";
-    }
-
-    searchInput.addEventListener("input", () => {
-      const val = searchInput.value.toLowerCase();
-      const filtered = countries.filter(c => c.name.toLowerCase().includes(val) || c.code.includes(val));
-      renderCountries(filtered);
-    });
-
-    dropdown.addEventListener("click", (e) => {
-      if (e.target.classList.contains("country-option")) {
-        const code = e.target.textContent.match(/\(\+?\d+\)/)[0].replace(/[()]/g, "");
-        phoneInput.value = code + " ";
-        dropdown.style.display = "none";
-        searchInput.value = e.target.textContent.split(" (")[0];
-      }
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest(".country-select-container")) dropdown.style.display = "none";
-    });
-
-    // === إرسال ===
-    const form = document.getElementById("careerForm");
-    const alertBox = document.getElementById("formAlert");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const res = await fetch(form.action, { method: "POST", body: formData, headers: { "Accept": "application/json" } });
-
-      if (res.ok) {
-        alertBox.textContent = "✅ Application sent successfully!";
-        alertBox.className = "alert success";
-        form.reset();
-      } else {
-        alertBox.textContent = "❌ Error submitting application. Please try again.";
-        alertBox.className = "alert error";
-      }
-    });
-  </script>
 </body>
 </html>
