@@ -1,102 +1,140 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Career - Smart Vision</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Career | Smart Vision</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ===== Career Page ===== */
-    .career-section {
-      max-width: 800px;
-      margin: 5rem auto;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(212,175,55,0.4);
-      backdrop-filter: blur(10px);
-      padding: 2.5rem;
-      border-radius: 20px;
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body {
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
       color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .career-container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      max-width: 1000px;
+      width: 100%;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .career-left {
+      background: url('career-bg.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 3rem;
       text-align: center;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.4);
     }
 
-    .career-section h2 {
-      font-size: 2rem;
+    .career-left h2 {
+      font-size: 2.2rem;
+      color: #D4AF37;
       margin-bottom: 1rem;
-      background: linear-gradient(90deg, #D4AF37, #fff, #D4AF37);
-      -webkit-background-clip: text;
-      color: transparent;
     }
 
-    .career-section p {
-      color: #ddd;
-      margin-bottom: 2rem;
+    .career-left p {
+      color: #eee;
       font-size: 1rem;
+      max-width: 300px;
+    }
+
+    .career-right {
+      background: rgba(0,0,0,0.6);
+      padding: 3rem;
     }
 
     form {
       display: flex;
       flex-direction: column;
       gap: 1.2rem;
-      text-align: left;
     }
 
     label {
+      font-weight: 500;
       color: #D4AF37;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-      display: block;
     }
 
-    input, textarea, select {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      border: none;
+    input, select, textarea {
+      padding: 0.9rem 1rem;
       border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.2);
       background: rgba(255,255,255,0.1);
       color: #fff;
       font-size: 1rem;
       transition: 0.3s;
-      appearance: none;
     }
 
-    input:focus, textarea:focus, select:focus {
-      outline: none;
+    input:focus, select:focus, textarea:focus {
+      border-color: #D4AF37;
       background: rgba(255,255,255,0.2);
-      border: 1px solid #D4AF37;
+      outline: none;
     }
 
-    select {
-      background: linear-gradient(90deg, rgba(212,175,55,0.15), rgba(255,255,255,0.1));
-      color: #fff;
-      border: 1px solid rgba(212,175,55,0.5);
-    }
+    textarea { resize: none; height: 100px; }
 
-    option {
-      background: #000;
-      color: #fff;
-    }
-
-    textarea {
-      resize: none;
-      height: 120px;
-    }
-
-    .phone-group {
+    .phone-row {
       display: flex;
       gap: 0.8rem;
       align-items: center;
     }
 
-    .phone-group select {
-      width: 35%;
-      flex-shrink: 0;
+    .country-select-container {
+      position: relative;
+      width: 40%;
     }
 
-    .phone-group input {
-      width: 65%;
+    .country-search {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .country-dropdown {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      right: 0;
+      background: #111;
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 10px;
+      display: none;
+      max-height: 180px;
+      overflow-y: auto;
+      z-index: 10;
+    }
+
+    .country-option {
+      padding: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .country-option:hover {
+      background: rgba(212,175,55,0.2);
     }
 
     button {
@@ -108,6 +146,7 @@
       cursor: pointer;
       font-weight: 700;
       transition: 0.3s;
+      font-size: 1rem;
     }
 
     button:hover {
@@ -115,130 +154,152 @@
       transform: scale(1.05);
     }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      .career-section {
-        width: 90%;
-        padding: 1.5rem;
-      }
+    .alert {
+      text-align: center;
+      font-weight: 600;
+      padding: 0.8rem;
+      border-radius: 10px;
+      display: none;
+    }
 
-      .phone-group {
-        flex-direction: column;
-      }
+    .alert.success {
+      display: block;
+      background: rgba(0,255,100,0.1);
+      border: 1px solid #00ff88;
+      color: #00ff88;
+    }
 
-      .phone-group select,
-      .phone-group input {
-        width: 100%;
-      }
+    .alert.error {
+      display: block;
+      background: rgba(255,0,0,0.1);
+      border: 1px solid #ff6666;
+      color: #ff6666;
+    }
 
-      button {
-        width: 100%;
+    @media (max-width: 850px) {
+      .career-container {
+        grid-template-columns: 1fr;
+      }
+      .career-left {
+        display: none;
+      }
+      .career-right {
+        padding: 2rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="logo-container">
-      <img src="Picture1.png" alt="Company Logo" class="logo-img">
-      <span class="logo-text">Smart Vision</span>
+  <div class="career-container">
+    <div class="career-left">
+      <h2>Join Smart Vision</h2>
+      <p>We believe in talent, innovation, and teamwork. Join us to shape the future with Smart Vision.</p>
     </div>
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="about.html">About us</a>
-      <a href="service.html">Service</a>
-      <a href="partnership.html">Partnership</a>
-      <a href="project.html">Project</a>
-      <a href="team.html">Our Team</a>
-      <a href="career.html" class="active">Career</a>
-      <a href="contact.html">Contact us</a>
-    </nav>
-    <button class="hamburger" id="hamburger">&#9776;</button>
-  </header>
 
-  <!-- Career Form -->
-  <section class="career-section">
-    <h2>Join Our Team</h2>
-    <p>We’re always looking for passionate professionals to join Smart Vision. Please fill out the form below to apply.</p>
+    <div class="career-right">
+      <form id="careerForm" action="https://formspree.io/f/mblzpopy" method="POST">
+        <label>Full Name</label>
+        <input type="text" name="Full Name" placeholder="Enter your full name" required>
 
-    <form action="smartgcs_es@yahoo.com" method="post" enctype="text/plain">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" name="Full Name" required>
+        <label>Email Address</label>
+        <input type="email" name="Email" placeholder="Enter your email" required>
 
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="Email" required>
+        <label>Phone Number</label>
+        <div class="phone-row">
+          <div class="country-select-container">
+            <input type="text" class="country-search" placeholder="Search country..." id="countrySearch">
+            <div class="country-dropdown" id="countryDropdown"></div>
+          </div>
+          <input type="tel" name="Phone" id="phone" placeholder="Enter your phone number" required>
+        </div>
 
-      <label for="phone">Phone Number</label>
-      <div class="phone-group">
-        <select id="countryCode" name="Country Code" required>
-          <option value="">Select Code</option>
-          <option value="+1">🇺🇸 +1 (USA)</option>
-          <option value="+44">🇬🇧 +44 (UK)</option>
-          <option value="+20">🇪🇬 +20 (Egypt)</option>
-          <option value="+971">🇦🇪 +971 (UAE)</option>
-          <option value="+966">🇸🇦 +966 (Saudi Arabia)</option>
-          <option value="+974">🇶🇦 +974 (Qatar)</option>
-          <option value="+965">🇰🇼 +965 (Kuwait)</option>
-          <option value="+973">🇧🇭 +973 (Bahrain)</option>
-          <option value="+968">🇴🇲 +968 (Oman)</option>
-          <option value="+962">🇯🇴 +962 (Jordan)</option>
-          <option value="+961">🇱🇧 +961 (Lebanon)</option>
-          <option value="+90">🇹🇷 +90 (Turkey)</option>
-          <option value="+49">🇩🇪 +49 (Germany)</option>
-          <option value="+33">🇫🇷 +33 (France)</option>
-          <option value="+39">🇮🇹 +39 (Italy)</option>
-          <option value="+34">🇪🇸 +34 (Spain)</option>
-          <option value="+91">🇮🇳 +91 (India)</option>
-          <option value="+81">🇯🇵 +81 (Japan)</option>
-          <option value="+86">🇨🇳 +86 (China)</option>
-          <option value="+61">🇦🇺 +61 (Australia)</option>
-          <option value="+27">🇿🇦 +27 (South Africa)</option>
+        <label>Position Applied For</label>
+        <select name="Position" required>
+          <option value="">Select Position</option>
+          <option value="Architect">Architect</option>
+          <option value="Civil Engineer">Civil Engineer</option>
+          <option value="Mechanical Engineer">Mechanical Engineer</option>
+          <option value="Electrical Engineer">Electrical Engineer</option>
+          <option value="Project Manager">Project Manager</option>
+          <option value="Interior Designer">Interior Designer</option>
         </select>
-        <input type="tel" id="phone" name="Phone" required placeholder="Phone Number">
-      </div>
 
-      <label for="position">Position Applied For</label>
-      <select id="position" name="Position" required>
-        <option value="">Select a Position</option>
-        <option value="Architect">Architect</option>
-        <option value="Civil Engineer">Civil Engineer</option>
-        <option value="Electrical Engineer">Electrical Engineer</option>
-        <option value="Mechanical Engineer">Mechanical Engineer</option>
-        <option value="Project Manager">Project Manager</option>
-        <option value="Quantity Surveyor">Quantity Surveyor</option>
-        <option value="Interior Designer">Interior Designer</option>
-        <option value="Site Engineer">Site Engineer</option>
-        <option value="Draftsman">Draftsman</option>
-        <option value="Administrative Assistant">Administrative Assistant</option>
-        <option value="Other">Other</option>
-      </select>
+        <label>Why would you like to join us?</label>
+        <textarea name="Message" placeholder="Write a short paragraph about yourself..." required></textarea>
 
-      <label for="message">Why would you like to join us?</label>
-      <textarea id="message" name="Message" placeholder="Write a short paragraph about yourself..." required></textarea>
-
-      <label for="cv">Attach Your CV (optional)</label>
-      <input type="file" id="cv" name="CV" accept=".pdf,.doc,.docx">
-
-      <button type="submit">Submit Application</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 Smart Vision. All Rights Reserved.</p>
-  </footer>
+        <button type="submit">Submit Application</button>
+        <div id="formAlert" class="alert"></div>
+      </form>
+    </div>
+  </div>
 
   <script>
-    // Hamburger Menu
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("navLinks");
+    // === دول ===
+    const countries = [
+      { name: "Egypt", code: "+20" },
+      { name: "Saudi Arabia", code: "+966" },
+      { name: "United Arab Emirates", code: "+971" },
+      { name: "Qatar", code: "+974" },
+      { name: "Kuwait", code: "+965" },
+      { name: "Bahrain", code: "+973" },
+      { name: "Oman", code: "+968" },
+      { name: "Jordan", code: "+962" },
+      { name: "Lebanon", code: "+961" },
+      { name: "USA", code: "+1" },
+      { name: "UK", code: "+44" },
+      { name: "Germany", code: "+49" },
+      { name: "France", code: "+33" },
+      { name: "India", code: "+91" },
+      { name: "Turkey", code: "+90" },
+    ];
 
-    hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
+    const searchInput = document.getElementById("countrySearch");
+    const dropdown = document.getElementById("countryDropdown");
+    const phoneInput = document.getElementById("phone");
+
+    function renderCountries(list) {
+      dropdown.innerHTML = list.map(c => `<div class='country-option'>${c.name} (${c.code})</div>`).join("");
+      dropdown.style.display = "block";
+    }
+
+    searchInput.addEventListener("input", () => {
+      const val = searchInput.value.toLowerCase();
+      const filtered = countries.filter(c => c.name.toLowerCase().includes(val) || c.code.includes(val));
+      renderCountries(filtered);
+    });
+
+    dropdown.addEventListener("click", (e) => {
+      if (e.target.classList.contains("country-option")) {
+        const code = e.target.textContent.match(/\(\+?\d+\)/)[0].replace(/[()]/g, "");
+        phoneInput.value = code + " ";
+        dropdown.style.display = "none";
+        searchInput.value = e.target.textContent.split(" (")[0];
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".country-select-container")) dropdown.style.display = "none";
+    });
+
+    // === إرسال ===
+    const form = document.getElementById("careerForm");
+    const alertBox = document.getElementById("formAlert");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const res = await fetch(form.action, { method: "POST", body: formData, headers: { "Accept": "application/json" } });
+
+      if (res.ok) {
+        alertBox.textContent = "✅ Application sent successfully!";
+        alertBox.className = "alert success";
+        form.reset();
+      } else {
+        alertBox.textContent = "❌ Error submitting application. Please try again.";
+        alertBox.className = "alert error";
+      }
     });
   </script>
-
 </body>
 </html>
