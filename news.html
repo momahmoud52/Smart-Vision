@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News - Smart Vision</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo-container">
+      <img src="Picture1.png" alt="Company Logo" class="logo-img">
+      <span class="logo-text">Smart Vision</span>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About us</a>
+      <a href="service.html">Service</a>
+      <a href="partnership.html">Partnership</a>
+      <a href="project.html">Project</a>
+      <a href="team.html">Our Team</a>
+      <a href="career.html">Career</a>
+      <a href="news.html" class="active">News</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  </header>
+
+  <!-- News Section -->
+  <section class="news-section">
+    <h2 class="page-title">Latest News</h2>
+  
+    <div class="news-container">
+  
+      <article class="news-card">
+        <div class="news-header">
+          <h3 class="news-title">Smart Vision Launches New AI System</h3>
+        </div>
+  
+        <div class="news-body">
+          <div class="news-images">
+            <img src="055.png" alt="AI Launch">
+            <img src="0100.png" alt="AI Presentation">
+          </div>
+          <p class="news-content">
+            Smart Vision has unveiled its latest AI-powered analytics platform designed to revolutionize
+            how businesses process data and make strategic decisions. The new system features real-time insights,
+            predictive modeling, and user-friendly visualization tools.
+          </p>
+        </div>
+      </article>
+  
+      <article class="news-card">
+        <div class="news-header">
+          <h3 class="news-title">Strategic Partnership with Global Tech</h3>
+        </div>
+  
+        <div class="news-body">
+          <div class="news-images">
+            <img src="https://via.placeholder.com/400x250" alt="Partnership">
+            <img src="https://via.placeholder.com/400x250" alt="Team Meeting">
+          </div>
+          <p class="news-content">
+            Smart Vision has joined forces with Global Tech to enhance the integration of AI in financial
+            and industrial services. This partnership focuses on creating a sustainable digital infrastructure
+            that empowers businesses with reliable and secure smart solutions.
+          </p>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-header">
+          <h3 class="news-title">Strategic Partnership with Global Tech</h3>
+        </div>
+  
+        <div class="news-body">
+          <div class="news-images">
+            <img src="https://via.placeholder.com/400x250" alt="Partnership">
+            <img src="https://via.placeholder.com/400x250" alt="Team Meeting">
+          </div>
+          <p class="news-content">
+            Smart Vision has joined forces with Global Tech to enhance the integration of AI in financial
+            and industrial services. This partnership focuses on creating a sustainable digital infrastructure
+            that empowers businesses with reliable and secure smart solutions.
+          </p>
+        </div>
+      </article>
+  
+    </div>
+  </section>
+  
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Smart Vision. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  </script>
+
+</body>
+</html>
