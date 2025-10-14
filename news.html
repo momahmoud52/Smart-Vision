@@ -4,18 +4,310 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>News - Smart Vision</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
 
-  <!-- Navbar -->
+  <style>
+    :root {
+      --gold1: #b8860b;
+      --gold2: #ffd700;
+      --dark: #000;
+      --bg: radial-gradient(circle at center, #0a0a0a, #000);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--gold2);
+      overflow-x: hidden;
+    }
+
+    /* ===== Navbar ===== */
+    header.navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(90deg, #000, #111);
+      padding: 15px 50px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      width: 45px;
+      height: 45px;
+    }
+
+    .logo-text {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      background: linear-gradient(45deg, #caa34d, #fff1a6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-family: "Poppins", sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #ffd700, #b8860b);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #ffd700;
+    }
+
+    nav a.active {
+      color: #ffd700;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      header.navbar {
+        flex-direction: column;
+        padding: 15px 20px;
+      }
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+    }
+
+    /* ===== Header Section ===== */
+    .hero {
+      background: linear-gradient(135deg, #000, #111 50%, #b8860b 120%);
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .hero h1 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      color: var(--gold2);
+      font-size: 1.1rem;
+    }
+
+    /* ===== News Section ===== */
+    .news-section {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .section-title {
+      display: inline-block;
+      border: 2px solid var(--gold2);
+      border-radius: 10px;
+      padding: 10px 30px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: linear-gradient(45deg, rgba(255, 215, 0, 0.05), rgba(255, 215, 0, 0.1));
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+      animation: glow 3s infinite alternate;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 10px rgba(255,215,0,0.2); }
+      to { box-shadow: 0 0 25px rgba(255,215,0,0.5); }
+    }
+
+    .news-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .news-card {
+      width: 330px;
+      background: linear-gradient(145deg, #0a0a0a, #000);
+      border: 1.5px solid rgba(255,215,0,0.3);
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255,215,0,0.05);
+      overflow: hidden;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      animation: fadeIn 1s ease both;
+    }
+    .news-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 0 35px rgba(255,215,0,0.3);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 2px solid var(--gold1);
+    }
+
+    .news-header {
+      background: rgba(255, 215, 0, 0.05);
+      border-top: 1px solid rgba(255,215,0,0.2);
+      border-bottom: 1px solid rgba(255,215,0,0.2);
+      padding: 15px;
+    }
+
+    .news-title {
+      font-size: 1.1rem;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      color: var(--gold2);
+      border-left: 4px solid var(--gold2);
+      padding-left: 10px;
+      text-align: left;
+    }
+
+    .news-content {
+      padding: 15px;
+      color: #e5d48a;
+      text-align: left;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .read-more {
+      display: block;
+      margin: 15px auto 25px;
+      background: linear-gradient(45deg, var(--gold1), var(--gold2));
+      border: none;
+      border-radius: 30px;
+      padding: 10px 25px;
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .read-more:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--gold2);
+    }
+
+    /* ===== Popup ===== */
+    .popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(6px);
+    }
+    .popup.active { display: flex; }
+
+    .popup-content {
+      background: rgba(20,20,20,0.95);
+      border: 1.5px solid var(--gold2);
+      border-radius: 20px;
+      max-width: 650px;
+      width: 90%;
+      padding: 25px;
+      color: var(--gold2);
+      position: relative;
+      animation: scaleUp 0.4s ease;
+    }
+    @keyframes scaleUp {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .popup-content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(255,215,0,0.3);
+    }
+
+    .popup-content h3 {
+      font-family: "Montserrat", sans-serif;
+      color: #fff;
+      margin-top: 10px;
+    }
+
+    .popup-content p {
+      color: #e9dba2;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .popup .close {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 30px;
+      color: var(--gold2);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .popup .close:hover {
+      color: #fff;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 25px;
+      border-top: 1px solid rgba(255,215,0,0.2);
+      background: #000;
+      color: var(--gold2);
+    }
+
+    @media (max-width: 768px) {
+      .news-container { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ✅ Navbar كاملة -->
   <header class="navbar">
     <div class="logo-container">
-      <img src="Picture1.png" alt="Company Logo" class="logo-img">
+      <img src="Picture1.png" alt="Smart Vision Logo" class="logo-img">
       <span class="logo-text">Smart Vision</span>
     </div>
-    <nav class="nav-links" id="navLinks">
+    <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About us</a>
       <a href="service.html">Service</a>
@@ -26,87 +318,104 @@
       <a href="news.html" class="active">News</a>
       <a href="contact.html">Contact us</a>
     </nav>
-    <button class="hamburger" id="hamburger">&#9776;</button>
   </header>
 
-  <!-- News Section -->
-  <section class="news-section">
-    <h2 class="page-title">Latest News</h2>
-  
-    <div class="news-container">
-  
-      <article class="news-card">
-        <div class="news-header">
-          <h3 class="news-title">Smart Vision Launches New AI System</h3>
-        </div>
-  
-        <div class="news-body">
-          <div class="news-images">
-            <img src="055.png" alt="AI Launch">
-            <img src="0100.png" alt="AI Presentation">
-          </div>
-          <p class="news-content">
-            Smart Vision has unveiled its latest AI-powered analytics platform designed to revolutionize
-            how businesses process data and make strategic decisions. The new system features real-time insights,
-            predictive modeling, and user-friendly visualization tools.
-          </p>
-        </div>
-      </article>
-  
-      <article class="news-card">
-        <div class="news-header">
-          <h3 class="news-title">Strategic Partnership with Global Tech</h3>
-        </div>
-  
-        <div class="news-body">
-          <div class="news-images">
-            <img src="https://via.placeholder.com/400x250" alt="Partnership">
-            <img src="https://via.placeholder.com/400x250" alt="Team Meeting">
-          </div>
-          <p class="news-content">
-            Smart Vision has joined forces with Global Tech to enhance the integration of AI in financial
-            and industrial services. This partnership focuses on creating a sustainable digital infrastructure
-            that empowers businesses with reliable and secure smart solutions.
-          </p>
-        </div>
-      </article>
+  <section class="hero">
+    <h1>Our Latest News</h1>
+    <p>Delivering excellence through innovation and vision.</p>
+  </section>
 
-      <article class="news-card">
+  <section class="news-section">
+    <h2 class="section-title">Featured News</h2>
+
+    <div class="news-container">
+      <div class="news-card">
+        <div class="news-header">
+          <h3 class="news-title">Smart Vision at Cityscape 2025</h3>
+        </div>
+        <img src="0012.jpg" alt="">
+        <p class="news-content">
+          Smart Vision showcased cutting-edge innovations at Cityscape 2025 — inspiring architectural excellence through technology and creativity.
+        </p>
+        <button class="read-more" data-target="popup1">Read More</button>
+      </div>
+
+      <div class="news-card">
+        <div class="news-header">
+          <h3 class="news-title">Impact Leadership Award Finalist</h3>
+        </div>
+        <img src="0025.jpeg" alt="">
+        <p class="news-content">
+          Smart Vision reached the final stage of the prestigious Impact Leadership Award, highlighting innovation and dedication to sustainable design.
+        </p>
+        <button class="read-more" data-target="popup2">Read More</button>
+      </div>
+
+      <div class="news-card">
         <div class="news-header">
           <h3 class="news-title">Strategic Partnership with Global Tech</h3>
         </div>
-  
-        <div class="news-body">
-          <div class="news-images">
-            <img src="https://via.placeholder.com/400x250" alt="Partnership">
-            <img src="https://via.placeholder.com/400x250" alt="Team Meeting">
-          </div>
-          <p class="news-content">
-            Smart Vision has joined forces with Global Tech to enhance the integration of AI in financial
-            and industrial services. This partnership focuses on creating a sustainable digital infrastructure
-            that empowers businesses with reliable and secure smart solutions.
-          </p>
-        </div>
-      </article>
-  
+        <img src="https://via.placeholder.com/400x250" alt="">
+        <p class="news-content">
+          Smart Vision joins forces with Global Tech to enhance AI integration across industries — a move toward digital transformation.
+        </p>
+        <button class="read-more" data-target="popup3">Read More</button>
+      </div>
     </div>
   </section>
-  
 
-  <!-- Footer -->
-  <footer class="footer">
+  <!-- Popups -->
+  <div id="popup1" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <img src="0012.jpg" alt="">
+      <h3>Smart Vision at Cityscape 2025</h3>
+      <p>
+        Smart Vision participated in Cityscape 2025, presenting innovative engineering designs driven by sustainability and modern AI solutions.  
+        Special thanks to the Smart Vision team for their continuous pursuit of excellence.
+      </p>
+    </div>
+  </div>
+
+  <div id="popup2" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <img src="0025.jpeg" alt="">
+      <h3>Impact Leadership Award Finalist</h3>
+      <p>
+        Smart Vision proudly reached the final stage of the Impact Leadership Award 2025, competing with the largest engineering organizations in Egypt.  
+        The company continues to set new benchmarks in innovation and excellence.
+      </p>
+    </div>
+  </div>
+
+  <div id="popup3" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <img src="https://via.placeholder.com/400x250" alt="">
+      <h3>Strategic Partnership with Global Tech</h3>
+      <p>
+        A new strategic alliance to integrate AI into financial and industrial services, reinforcing Smart Vision’s role as a leader in sustainable innovation.
+      </p>
+    </div>
+  </div>
+
+  <footer>
     <p>&copy; 2025 Smart Vision. All Rights Reserved.</p>
   </footer>
 
   <script>
-    // Hamburger Menu Toggle
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("navLinks");
-
-    hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
+    document.querySelectorAll(".read-more").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".popup").forEach(p => p.classList.remove("active"));
+        document.getElementById(btn.dataset.target).classList.add("active");
+      });
+    });
+    document.querySelectorAll(".popup").forEach(p => {
+      p.addEventListener("click", e => {
+        if (e.target.classList.contains("close") || e.target === p) p.classList.remove("active");
+      });
     });
   </script>
-
 </body>
 </html>

@@ -1,20 +1,12 @@
-// script.js — نسخة مُحسنة وشاملة
+// ================= Helper =================
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('script.js loaded');
-
-  // --- helper --
   const $id = id => document.getElementById(id);
 
   // ================= Hamburger Menu =================
   const hamburger = $id('hamburger');
   const navLinks = $id('navLinks');
-  if (hamburger) {
-    hamburger.addEventListener('click', () => {
-      if (navLinks) navLinks.classList.toggle('active');
-      else console.warn('navLinks element not found (id="navLinks").');
-    });
-  } else {
-    console.warn('hamburger element not found (id="hamburger").');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
   }
 
   // ================= Loader Control =================
@@ -23,146 +15,149 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
       setTimeout(() => {
         loader.classList.add('fade-out');
-        // ensure it's hidden even if CSS missing
         loader.style.pointerEvents = 'none';
       }, 2000);
     });
-  } else {
-    // it's optional — لا مشكلة إن لم يوجد
-    // console.info('No loader (#loader) found — skipping loader logic.');
   }
 
   // ================= Services Accordion =================
   const accordions = document.querySelectorAll('.accordion-header');
-  if (accordions.length) {
-    accordions.forEach(header => {
-      header.addEventListener('click', () => {
-        const item = header.parentElement;
-        // إغلاق الباقي (اختياري لكن مفيد UX)
-        accordions.forEach(h => {
-          if (h !== header) h.parentElement.classList.remove('active');
-        });
-        item.classList.toggle('active');
+  accordions.forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      accordions.forEach(h => {
+        if (h !== header) h.parentElement.classList.remove('active');
+      });
+      item.classList.toggle('active');
+    });
+  });
+
+  // ================= Team Modal =================
+  const teamCards = document.querySelectorAll('.team-card');
+  let teamModal = $id('teamModal');
+
+  if (teamCards.length) {
+    if (!teamModal) {
+      teamModal = document.createElement('div');
+      teamModal.id = 'teamModal';
+      teamModal.className = 'team-modal';
+      teamModal.innerHTML = `
+        <div class="team-modal-content">
+          <button class="close-modal" id="closeModal">&times;</button>
+          <img id="modalImg" src="" alt="">
+          <h3 id="modalName"></h3>
+          <p id="modalRole" class="modal-role"></p>
+          <p id="modalInfo" class="modal-info"></p>
+        </div>
+      `;
+      document.body.appendChild(teamModal);
+    }
+
+    const modalImg = teamModal.querySelector('#modalImg');
+    const modalName = teamModal.querySelector('#modalName');
+    const modalRole = teamModal.querySelector('#modalRole');
+    const modalInfo = teamModal.querySelector('#modalInfo');
+    const closeModal = teamModal.querySelector('#closeModal');
+
+    const showModal = () => {
+      teamModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    };
+    const hideModal = () => {
+      teamModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    };
+
+    teamCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const name = card.dataset.name || card.querySelector('h3')?.textContent || '';
+        const role = card.dataset.role || card.querySelector('p')?.textContent || '';
+        const info = card.dataset.info || '';
+        const img = card.dataset.img || card.querySelector('img')?.src || '';
+
+        modalImg.src = img;
+        modalName.textContent = name;
+        modalRole.textContent = role;
+        modalInfo.textContent = info;
+        showModal();
       });
     });
-  } else {
-    // no accordions on this page — لا مشكلة
+
+    closeModal?.addEventListener('click', hideModal);
+    teamModal.addEventListener('click', e => { if (e.target === teamModal) hideModal(); });
+    window.addEventListener('keydown', e => { if (e.key === 'Escape') hideModal(); });
   }
 
-  // ================= Team Modal (Popup) =================
-  const teamCards = document.querySelectorAll('.team-card');
-  if (!teamCards.length) {
-    console.warn('No .team-card elements found. (لم يتم العثور على كروت الفريق)');
-    return; // لا داعي لمواصلة منطق المودال إن لم توجد كروت
-  }
+  // ================= News "Read More" Popup =================
+  const readMoreButtons = document.querySelectorAll('.read-more');
+  const popups = document.querySelectorAll('.popup');
 
-  // التأكد من وجود المودال، وإن لم يكن ينشأ ديناميكياً
-  let teamModal = $id('teamModal');
-  if (!teamModal) {
-    teamModal = document.createElement('div');
-    teamModal.id = 'teamModal';
-    teamModal.className = 'team-modal';
-    teamModal.innerHTML = `
-      <div class="team-modal-content" role="dialog" aria-modal="true">
-        <button class="close-modal" id="closeModal" aria-label="Close">&times;</button>
-        <img id="modalImg" src="" alt="" />
-        <h3 id="modalName"></h3>
-        <p class="modal-role" id="modalRole"></p>
-        <p class="modal-info" id="modalInfo"></p>
-      </div>
-    `;
-    document.body.appendChild(teamModal);
+  if (readMoreButtons.length) {
+    readMoreButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const popup = document.getElementById(targetId);
+        if (!popup) return;
 
-    // fallback inline styles in case CSS for modal is missing
-    const s = teamModal.style;
-    s.display = 'none';
-    s.position = 'fixed';
-    s.inset = '0';
-    s.justifyContent = 'center';
-    s.alignItems = 'center';
-    s.background = 'rgba(0,0,0,0.8)';
-    s.zIndex = '1200';
-  }
+        popup.style.display = 'flex';
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
 
-  const modalContent = teamModal.querySelector('.team-modal-content');
-  const modalImg = teamModal.querySelector('#modalImg');
-  const modalName = teamModal.querySelector('#modalName');
-  const modalRole = teamModal.querySelector('#modalRole');
-  const modalInfo = teamModal.querySelector('#modalInfo');
-  const closeModal = teamModal.querySelector('#closeModal');
+        // === Carousel Logic for images ===
+        const imgs = popup.querySelectorAll('.popup-images img');
+        let index = 0;
+        const nextBtn = popup.querySelector('.next');
+        const prevBtn = popup.querySelector('.prev');
 
-  // show / hide helpers — نستخدم style.display لضمان العمل حتى لو CSS لا يعرّف .active
-  const showModal = () => {
-    teamModal.style.display = 'flex';
-    // make modal accessible for CSS animations if present
-    teamModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    // ensure focus for accessibility
-    if (modalContent) modalContent.focus?.();
-  };
-  const hideModal = () => {
-    teamModal.style.display = 'none';
-    teamModal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  };
+        const updateImages = () => {
+          imgs.forEach((img, i) => {
+            img.style.display = (i === index) ? 'block' : 'none';
+          });
+        };
+        updateImages();
 
-  // attach click handlers
-  teamCards.forEach(card => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', () => {
-      // read data- attributes or fallback to inner elements
-      const name = card.dataset.name?.trim() || (card.querySelector('h3')?.textContent || '').trim();
-      const role = card.dataset.role?.trim() || (card.querySelector('p')?.textContent || '').trim();
-      const info = (card.dataset.info?.trim() || card.dataset.bio?.trim() || '');
-      const img = card.dataset.img?.trim() || (card.querySelector('img')?.src || '');
+        nextBtn?.addEventListener('click', () => {
+          index = (index + 1) % imgs.length;
+          updateImages();
+        });
 
-      if (modalImg) {
-        modalImg.src = img || '';
-        modalImg.alt = name || 'Team member';
-      }
-      if (modalName) modalName.textContent = name || '';
-      if (modalRole) modalRole.textContent = role || '';
-      if (modalInfo) modalInfo.textContent = info || '';
-
-      showModal();
+        prevBtn?.addEventListener('click', () => {
+          index = (index - 1 + imgs.length) % imgs.length;
+          updateImages();
+        });
+      });
     });
-  });
 
-  // close handlers
-  if (closeModal) {
-    closeModal.addEventListener('click', hideModal);
-  } else {
-    console.warn('#closeModal not found inside modal — the modal will still close by clicking outside or pressing Escape.');
+    // إغلاق النوافذ
+    popups.forEach((popup) => {
+      const closeBtn = popup.querySelector('.close');
+      closeBtn?.addEventListener('click', () => {
+        popup.style.display = 'none';
+        popup.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
+    window.addEventListener('click', (e) => {
+      popups.forEach((popup) => {
+        if (e.target === popup) {
+          popup.style.display = 'none';
+          popup.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        popups.forEach((popup) => {
+          popup.style.display = 'none';
+          popup.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+      }
+    });
+
+    console.log(`✅ News popups initialized (${readMoreButtons.length} items).`);
   }
-
-  // click outside
-  teamModal.addEventListener('click', (e) => {
-    if (e.target === teamModal) hideModal();
-  });
-
-  // esc key
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') hideModal();
-  });
-
-  console.log('Team modal initialized for', teamCards.length, 'cards.');
-});
-// تحديث المودال لتنسيق الفقرة الطويلة بشكل جميل
-teamCards.forEach(card => {
-  card.addEventListener('click', () => {
-    const name = card.dataset.name || card.querySelector('h3')?.textContent || '';
-    const role = card.dataset.role || card.querySelector('p')?.textContent || '';
-    const info = card.dataset.info || '';
-    const img = card.dataset.img || card.querySelector('img')?.src || '';
-
-    modalImg.src = img;
-    modalName.textContent = name;
-    modalRole.textContent = role;
-    modalInfo.innerHTML = `<div class="team-modal-text">
-        <h3>${name}</h3>
-        <p class="modal-role">${role}</p>
-        <p class="modal-info">${info}</p>
-    </div>`;
-    showModal();
-  });
 });
