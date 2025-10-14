@@ -310,6 +310,30 @@
       color: #fff;
     }
 
+    /* === Scroll inside popup === */
+.popup-content {
+  max-height: 80vh;        /* يحدد أقصى ارتفاع للمحتوى */
+  overflow-y: auto;        /* تفعيل التمرير العمودي */
+  scrollbar-width: thin;   /* مظهر أنيق لمتصفح Firefox */
+  scrollbar-color: var(--gold2) #111;
+}
+
+/* تصميم شريط التمرير في متصفحات WebKit */
+.popup-content::-webkit-scrollbar {
+  width: 8px;
+}
+.popup-content::-webkit-scrollbar-track {
+  background: #111;
+  border-radius: 10px;
+}
+.popup-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--gold1), var(--gold2));
+  border-radius: 10px;
+}
+.popup-content::-webkit-scrollbar-thumb:hover {
+  background: var(--gold2);
+}
+
     /* ===== Footer ===== */
     footer {
       text-align: center;
@@ -358,12 +382,11 @@
     <div class="news-container">
       <div class="news-card">
         <div class="news-header">
-          <h3 class="news-title">Smart Vision at Cityscape 2025</h3>
+          <h3 class="news-title">Smart Vision Reaches Final of the Impact Leadership Award at Big 5 Egypt 2025 and Earns Spot to Represent Egypt at Big 5 Global in Dubai</h3>
         </div>
         <img src="0012.jpg" alt="">
         <p class="news-content">
-          Smart Vision showcased cutting-edge innovations at Cityscape 2025 — inspiring architectural excellence through technology and creativity.
-        </p>
+          Smart Vision for Engineering Consultancy has achieved a remarkable milestone by reaching the finals of the prestigious Impact Leadership Award at Big 5 Egypt 2025, one of the region’s leading events in ... </p>
         <button class="read-more" data-target="popup1">Read More</button>
       </div>
 
@@ -396,10 +419,18 @@
     <div class="popup-content">
       <span class="close">&times;</span>
       <img src="0012.jpg" alt="">
-      <h3>Smart Vision at Cityscape 2025</h3>
+      <h3>Smart Vision Reaches Final of the Impact Leadership Award at Big 5 Egypt and Qualifies to Represent Egypt at Big 5 Global in Dubai 2025</h3>
       <p>
-        Smart Vision participated in Cityscape 2025, presenting innovative engineering designs driven by sustainability and modern AI solutions.  
-        Special thanks to the Smart Vision team for their continuous pursuit of excellence.
+        Smart Vision for Engineering Consultancy has achieved a remarkable milestone by reaching the finals of the prestigious Impact Leadership Award at Big 5 Egypt 2025, one of the region’s leading events in the construction and engineering sector. Competing alongside major industry names such as the Arab Contractors and the Egyptian Consultants Group, Smart Vision stands out as a growing company with a strong strategic vision and measurable impact.
+
+        Following this recognition, the company has been selected to represent Egypt at Big 5 Global in Dubai in November 2025, marking a significant step toward international expansion and positioning among the top players in sustainable construction and advanced engineering.
+        
+        Eng. Mohamed Osama Hassan, Chairman of Smart Vision, stated: “Our journey to the finals and our qualification for Big 5 Global reflect our belief that small companies can drive real change through innovation and teamwork.” He added that the company’s focus on value engineering and sustainability has strengthened its role in supporting Egypt Vision 2030.
+        
+        Meanwhile, Eng. Ahmed Amin, Chief Financial Officer, emphasized that participation in Big 5 Global will provide a key platform to showcase Smart Vision’s expertise and expand its regional and international partnerships.
+        
+        About the Award:
+        The Impact Leadership Award celebrates visionary leaders in engineering who promote sustainability, empower communities, and pioneer innovative solutions—aligning with Big 5’s global mission to highlight excellence and transformation across the construction and engineering industries.
       </p>
     </div>
   </div>
