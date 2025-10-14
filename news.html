@@ -59,6 +59,7 @@
     nav {
       display: flex;
       gap: 25px;
+      transition: all 0.3s ease;
     }
 
     nav a {
@@ -95,15 +96,39 @@
       font-weight: 600;
     }
 
+    /* ===== Hamburger ===== */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      color: var(--gold2);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .menu-toggle:hover { color: #fff; }
+
     @media (max-width: 768px) {
-      header.navbar {
-        flex-direction: column;
-        padding: 15px 20px;
+      .menu-toggle {
+        display: block;
       }
+
       nav {
-        flex-wrap: wrap;
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 70%;
+        height: calc(100vh - 70px);
+        background: rgba(0, 0, 0, 0.97);
+        flex-direction: column;
         justify-content: center;
-        gap: 15px;
+        align-items: center;
+        gap: 25px;
+        transition: 0.4s ease;
+      }
+
+      nav.active {
+        right: 0;
       }
     }
 
@@ -301,13 +326,15 @@
 </head>
 
 <body>
-  <!-- ✅ Navbar كاملة -->
   <header class="navbar">
     <div class="logo-container">
       <img src="Picture1.png" alt="Smart Vision Logo" class="logo-img">
       <span class="logo-text">Smart Vision</span>
     </div>
-    <nav>
+
+    <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+
+    <nav id="nav">
       <a href="index.html">Home</a>
       <a href="about.html">About us</a>
       <a href="service.html">Service</a>
@@ -415,6 +442,16 @@
       p.addEventListener("click", e => {
         if (e.target.classList.contains("close") || e.target === p) p.classList.remove("active");
       });
+    });
+
+    // === Hamburger ===
+    const toggle = document.getElementById("menu-toggle");
+    const nav = document.getElementById("nav");
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("active");
+      toggle.innerHTML = nav.classList.contains("active")
+        ? '<i class="fas fa-times"></i>'
+        : '<i class="fas fa-bars"></i>';
     });
   </script>
 </body>
